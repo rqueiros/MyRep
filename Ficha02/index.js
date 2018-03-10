@@ -84,7 +84,7 @@ function funcD(numbers) {
     show("D -> " + result)
 }
 
-function concat_2(numbers) {
+function concat(numbers) {
     let newStr = ""
     for(let i = 0; i < numbers.length; i++) {
         newStr += numbers[i]
@@ -93,6 +93,18 @@ function concat_2(numbers) {
 }
 
 // Forma abreviada
-function concat(numbers, n) {
+function concat_2(numbers) {
     return numbers.reduce( (a, b) => "" + a + b)
+}
+
+/*
+    ######################## Alínea E ###########################
+*/
+function funcE(colors) {
+    let result = sort(colors)
+    show("E -> " + result)
+}
+
+function sort(colors) {    
+    return colors.sort()
 }
