@@ -93,7 +93,7 @@ function concat(numbers) {
 }
 
 // Forma abreviada
-function concat_2(numbers) {
+function concat_2(numbers, n) {
     return numbers.reduce( (a, b) => "" + a + b)
 }
 
@@ -107,4 +107,141 @@ function funcE(colors) {
 
 function sort(colors) {    
     return colors.sort()
+}
+
+/*
+    ######################## Alínea F ###########################
+*/
+function funcF(colors) {
+    let result = unsort(colors)
+    show("F -> " + result)
+}
+
+function unsort(colors) {    
+    return colors.sort().reverse()
+}
+
+/*
+    ######################## Alínea G ###########################
+*/
+function funcG(colors) {
+    let result = getBiggerString(colors)
+    show("G -> " + result)
+}
+
+function getBiggerString(colors) {
+    let bigger = 0
+    let biggerString = ""
+    for(let i = 0; i < colors.length; i++) {
+        let nChars = colors[i].length
+        if (nChars > bigger) {
+            bigger = nChars
+            biggerString = colors[i]
+        }        
+    }
+    return biggerString    
+}
+
+// Forma abreviada
+function getBiggerString_2(colors) {
+    return colors.reduce( (a, b) => {
+        return a.length > b.length ? a : b
+    })
+}
+
+/*
+    ######################## Alínea H ###########################
+*/
+function funcH(colors, str) {
+    let result = getNumberOccurString(colors, str)
+    show("H -> " + result)
+}
+
+function getNumberOccurString(colors, str) {
+    let count = 0
+    for(let i = 0; i < colors.length; i++) {        
+        if (colors[i] == str) {
+            count++
+        }        
+    }
+    return count    
+}
+
+// Forma abreviada
+function getNumberOccurString_2(colors, str) {
+   return colors.filter( (a) => { 
+       return a == str; 
+    }).length;
+}
+
+/*
+    ######################## Alínea I ###########################
+*/
+function funcI(passwords) {
+    let result = confirmPass(passwords)
+    show("I -> " + result)
+}
+
+function confirmPass(passwords) {
+   let result = 0
+   if(passwords[0]==passwords[1]) {
+       result = 1
+   }
+   return result 
+}
+
+// Forma abreviada
+function confirmPass_2(passwords) {    
+    return passwords[0]==passwords[1] ? 1 : 0    
+}
+
+/*
+    ######################## Alínea J ###########################
+*/
+function funcJ(colors, pos) {
+    let result = getValueFromPosition(colors, pos)
+    show("J -> " + result)
+}
+
+function getValueFromPosition(colors, pos) {   
+   return colors[pos]
+}
+
+/*
+    ######################## Alínea K ###########################
+*/
+function funcK(num) {
+    let result = createArray(num)
+    show("k -> " + result)
+}
+
+function createArray(num) {   
+    let nums = [] 
+    for(let i = 1; i < num; i++) {
+        nums[i - 1] = i
+    }
+   return nums
+}
+
+/*
+    ######################## Alínea L ###########################
+*/
+function funcL(numbers) {
+    let result = getEvenNumbers(numbers)
+    show("L -> " + result)
+}
+
+function getEvenNumbers(numbers) {   
+    let newArray = [] 
+    for(let i = 0; i < numbers.length; i++) {
+        if(numbers[i] % 2 == 0) {
+            newArray.push(numbers[i])
+        }
+    }
+   return newArray
+}
+
+// Forma abreviada
+function getEvenNumbers_2(numbers) {   
+    return numbers.filter(n => n % 2 == 0)
 }
