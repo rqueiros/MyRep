@@ -245,3 +245,55 @@ function getEvenNumbers(numbers) {
 function getEvenNumbers_2(numbers) {   
     return numbers.filter(n => n % 2 == 0)
 }
+
+/*
+    ######################## Alínea M ###########################
+*/
+function funcM(numbers) {
+    let result = getIncNumbers(numbers)
+    show("M -> " + result)
+}
+
+function getIncNumbers(numbers) {   
+    let newArray = [] 
+    let size = numbers.length
+    for(let i = 0; i < size; i++) {
+        newArray.push(numbers[i] + 1)
+    }    
+   return newArray
+}
+
+// Forma abreviada
+function getIncNumbers_2(numbers) {   
+    return numbers.map(n => n + 1)
+}
+
+/*
+    ######################## Alínea N ###########################
+*/
+function funcN(numbers1, numbers2) {
+    let result = getSumNumbers(numbers1, numbers2)
+    show("L -> " + result)
+}
+
+function getSumNumbers_2(numbers1, numbers2) {   
+    let newArray = []
+    let maxSize = numbers1.length
+    
+    if(numbers1.length < numbers2.length) {
+        maxSize = numbers2.length
+    }
+    
+    for(let i = 0; i < maxSize; i++) {
+        
+        if (numbers1[i] == undefined) {
+            numbers1[i] = 0
+        }
+        if (numbers2[i] == undefined) {
+            numbers2[i] = 0
+        }
+
+        newArray.push(numbers1[i] + numbers2[i])
+    }    
+   return newArray
+}
