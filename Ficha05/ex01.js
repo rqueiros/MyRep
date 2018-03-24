@@ -1,9 +1,4 @@
-
-
-
-
-
-
+// Classe Retângulo
 class Retangulo {
     constructor(largura = 1, altura = 1) {
         this.largura = largura

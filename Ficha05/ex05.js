@@ -1,3 +1,4 @@
+// Classe País
 class Pais {
     constructor(nome, populacao, area) {
         this.nome = nome
@@ -99,7 +100,7 @@ for(let i=0; i< paises.length; i++) {
     console.log(paises[i].nome)
 }
 
-// ordenar pelo nome do país
+// Ordenar pelo nome do país
 paises.sort(Pais.comparar)
 
 // Listar países ordenados

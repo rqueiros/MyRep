@@ -30,7 +30,7 @@ function init() {
         }
     })
 
-    // Clique no boão TODAS
+    // Clique no botão TODAS
     btnCampus2.addEventListener("click", function () {
         // Obtém referência para a coleção de todos os elementos input
         let refInputs = document.getElementsByClassName("campus2")
@@ -40,7 +40,7 @@ function init() {
         }
     })
 
-    // Clique no boão TODAS
+    // Clique no botão TODAS
     btnCampus3.addEventListener("click", function () {
         // Obtém referência para a coleção de todos os elementos input
         let refInputs = document.getElementsByClassName("campus3")
