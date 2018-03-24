@@ -1,48 +1,54 @@
-// Classe Círculo
-class Circulo {
+
+const VELOCIDADE = {
+    BAIXA: 1,
+    MEDIA: 2,
+    ALTA: 3
+}
+
+// Classe Ventoinha
+class Ventoinha {
     constructor(raio) {
-        this.raio = raio        
+        this.velocidade = VELOCIDADE.BAIXA
+        this.ligada = false                
     }
 
-    // Propriedade raio (set e get)
-    get raio() {
-        return this._raio
+    // Propriedade velocidade (set e get)
+    get velocidade() {
+        return this._velocidade
     }
-    set raio(novoRaio) {
-        this._raio = novoRaio
-    }
-    
-    // Método para calcular a área de um círculo
-    getArea() {
-        return Math.PI * Math.pow(this.raio, 2)
+    set velocidade(novaVelocidade) {
+        this._velocidade = novaVelocidade
     }
 
-    // Método para calcular a circunferência (perímeto) de um círculo
-    getCircunferencia() {
-        return 2 * Math.PI * this._raio
+    // Propriedade ligada (set e get)
+    get ligada() {
+        return this._ligada
+    }
+    set ligada(novaLigada) {
+        this._ligada = novaLigada
     }
 
-     // Método para calcular a circunferência (perímeto) de um círculo
-     aumentarRaio(pct) {
-        this.raio *= 1 + (pct/100) 
-    }
+    toString() {
+        if(this.ligada)
+            return `A ventoinha está ligada com a velocidade ${this.velocidade}` 
+        else
+            return "A ventoinha está desligada"
+    }    
 }
 
 
-// Criação de objetos e invocação de propriedades/métodos
-let raio = parseInt(prompt("Escreva um raio para um novo círculo?"))
-let meuCirculo = new Circulo(raio)
+// Criar 2 instância da classe Ventoinha
+let minhaVentoinha1 = new Ventoinha()
+let minhaVentoinha2 = new Ventoinha()
 
-console.log(meuCirculo.raio)
-console.log(meuCirculo.getArea())
-console.log(meuCirculo.getCircunferencia())
+// Mostrar dados da 1ª ventoinha
+console.log(minhaVentoinha1.toString())
 
-// Aumento do raio
-let pct = parseInt(prompt("Qual a percentagem do aumento do raio (ex.: 30)?"))
-meuCirculo.aumentarRaio(pct)
+// Ligar e aumentar a velocidade da segunda ventoinha
+minhaVentoinha2.ligada = true
+minhaVentoinha2.velocidade = VELOCIDADE.ALTA
 
-console.log(meuCirculo.raio)
-console.log(meuCirculo.getArea())
-console.log(meuCirculo.getCircunferencia())
+// Mostrar dados da 2ª ventoinha
+console.log(minhaVentoinha2.toString())
 
 
