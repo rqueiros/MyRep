@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha nº6 - Exercício nº3</title>
+    <script src="ex03.js"></script>
+</head>
+<body>   
+    <form id="frmFilmes" action="">
+        Título: <input id="txtTitulo" type="text" maxlength="50" required>
+        Ano: <input id="txtAno" type="number" min="1900" max="2018" required>
+        Género: <select name="" id="sltGenero">
+            <option value="Ação">Ação</option>
+            <option value="Animação">Animação</option>
+            <option value="Aventura">Aventura</option>            
+            <option value="Romance">Romance</option>
+            <option value="Terror">Terror</option>
+            <option value="Thriller">Thriller</option>
+        </select>
+        <input type="submit" value="adicionar filme">
+    </form>    
+    <p id="pMsg"></p>
+    <table id="tblFilmes"></table>
+</body>
+</html>
