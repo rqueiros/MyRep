@@ -7,9 +7,7 @@ let show = function (value) {
 }
 
 
-/*
-    Variáveis globais com objetos
-*/
+// ##################### Alínea A ####################
 let student = {
     name: "David Silva",
     course: "POO",
@@ -19,6 +17,34 @@ let student = {
     }
 }
 
+// Função para listar os nomes das propriedades do objeto
+function funcA() {
+    let str = ""
+    for (let key in student) {
+        str += key
+    }
+    show("Listagem-> " + str)
+
+    // ii) remover propriedade
+    delete student.grade
+    
+    // listar de novo o objeto
+    str = ""
+    for (let key in student) {
+        str += key
+    }
+    show("Listagem-> " + str)
+
+    // iii) calcular tamanho do objeto (nç de propriedades)
+    let cont = 0
+    for (let key in student) {
+        cont++
+    }
+    show("Nº de propriedades-> " + cont)
+}
+
+
+// ##################### Alínea B ####################
 let grades = [
     {
         name: 'Rui',
@@ -33,35 +59,11 @@ let grades = [
         grade: 14
     }]
 
-// Função para listar os nomes das propriedades do objeto
-function funcA() {
-    let str = ""
-    for (let key in student) {
-        str += key
-    }
-    show("A-> " + str)
-}
 
-// Função para listar os nomes das propriedades do objeto, remover propriedade e listar novamente
+// Função para retornar o tamanho de um objeto (nº de propriedades)
 function funcB() {
-    funcA()
-    delete student.grade
-    funcA()
-}
-
-// Função para retornar o tamanho de um objeto (nº de propriedades)
-function funcC() {
-    let cont = 0
-    for (let key in student) {
-        cont++
-    }
-    show("C-> " + cont)
-}
-
-// Função para retornar o tamanho de um objeto (nº de propriedades)
-function funcD() {
     
-    // Obter dados do utilizador
+    // i) inserir novo estudante/nota
     let myName = prompt("Digite um nome?")
     let myGrade = parseInt(prompt("Digite uma nota?"))
 
@@ -70,47 +72,31 @@ function funcD() {
     
     // Adicionar objeto ao array
     grades.push(grade)
-
-    // Listar objetos
-    let str = ""
-    for(let i=0; i<grades.length; i++) {
-        str += grades[i].name + "-" + grades[i].grade + "\n"
-    }
-
-    // Imprimir na TextArea
-    show("D-> " + str)
-}
-
-// Função para devolver a média das notas a POO
-function funcE() {
     
-    // Somar todas as notas do array
+    // ii) calcular média das notas
     let total = 0
     for(let i=0; i < grades.length; i++) {
         total += grades[i].grade
     }
-
     // Imprimir a média das notas na TextArea
-    show("E-> " + total/grades.length)
-}
-
-// Função para devolver nomes dos estudantes com nota positiva a POO
-function funcF() {
+    show("Média-> " + total/grades.length)
     
-    // Obter todos os nomes dos estudantes com nota igual ou superior a 10
+    // iii) Obter todos os nomes dos estudantes com nota igual ou superior a 10
     let str = ""
     for(let i=0; i < grades.length; i++) {
         if (grades[i].grade >= 10) {
             str += grades[i].name + "\n"
         }       
     }
-
-    // Imprimir a média das notas na TextArea
-    show("F-> " + str)
+    // Imprimir o nome dos estudantes com positiva na TextArea
+    show("Positivas-> " + str)
 }
 
-let carros = []
 
+
+// ##################### Alínea C ####################
+let carros = []
+// Em vez de criar uma função construtora optei por criar uma classe para facilitar legibilidade
 class Carro {
     constructor(marca, matricula, cor, depositoAtual, tipoCombustivel) {
         this.marca = marca
@@ -124,39 +110,99 @@ class Carro {
         return this._marca
     }
 
-    set marca(value) {
-        this._marca = value
+    set marca(novaMarca) {
+        this._marca = novaMarca
+    }
+
+    get cor() {
+        return this._cor
+    }
+
+    set cor(novaCor) {
+        this._cor = novaCor
+    }
+
+    get depositoAtual() {
+        return this._depositoAtual
+    }
+
+    set depositoAtual(novoDeposito) {
+        if (this._depositoAtual - novoDeposito) {
+            
+        }
+        this._depositoAtual = novoDeposito
+    }
+
+    consumir(km) {
+        this.depositoAtual -= km * 5 / 100
     }
 
 }
 
-let meuCarro = new Carro("Nissan","91-GH-15","cinza", 10, "gasóleo")
-let meuCarro2 = new Carro("Seat","45-AS-52","preto", 50, "gasolina")
+function funcC() {
+    // Criação de 2 instâncias de carro
+    let meuCarro = new Carro("Ford","91-GH-15","verde", 40, "Gasóleo")
+    let meuCarro2 = new Carro("Opel","23-AB-23","brano", 50, "Gasolina")
 
-carros.push(meuCarro)
-carros.push(meuCarro2)
+    // Adição das instâncias anteriores a um array
+    carros.push(meuCarro, meuCarro2)
 
+    // Analisar depósito do 2º carro
+    show("Depósito atual-> " + meuCarro2.depositoAtual)
+    meuCarro2.consumir(22)
+    show("Depósito atual-> " + meuCarro2.depositoAtual)
+    meuCarro2.consumir(122)
+    show("Depósito atual-> " + meuCarro2.depositoAtual)
+}
 
-function funcG() {   
-    for(let i=0; i < carros.length; i++) {        
-        console.log(carros[i].marca + "-" + carros[i].cor)        
+// ##################### Alínea D ####################
+class Cilindro {
+    constructor(raio, altura) {
+        this.raio = raio
+        this.altura = altura        
     }
-    
-    
-    meuCarro.marca = "ferrari"
-    
-    for(let i=0; i < carros.length; i++) {        
-        console.log(carros[i].marca + "-" + carros[i].cor)        
+
+    get raio() {
+        return this._raio
     }
 
+    set raio(novoRaio) {
+        this._raio = novoRaio
+    }
+
+    get altura() {
+        return this._altura
+    }
+
+    set altura(novaAltura) {
+        this._altura = novaAltura
+    }
+
+
+    volume() {
+        return Math.PI * this.raio * this.raio * this.altura
+    }
+}
+
+function funcD() {
+    let cyl = new Cilindro(7, 4)
+    show("Volume: "  + cyl.volume().toFixed(4))    
 }
 
 
+// ##################### Alínea E ####################
+function funcE() {    
+    show("Exercício similar a um da próxima ficha (ver o da outra ficha)")    
+}
 
-
-
-
-
-
-
+// ##################### Alínea F ####################
+function funcF() {    
+    String.prototype.initEnd = function () {          
+      return this[0] + this[this.length - 1]
+    }
+    
+    let str = "ESMAD"
+    
+    show("INITEND-> " + str.initEnd())    
+}
 
