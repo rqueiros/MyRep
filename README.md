@@ -1,4 +1,2 @@
-# MyRep
-This is a repository for testing the Git features
-This is a new line!
-This is a new line written in GitHub!
+# Source Code Repository
+This is the repository with all the source code from the OOP course of TSIW/ESMAD/P.PORTO
