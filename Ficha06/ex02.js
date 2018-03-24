@@ -19,7 +19,7 @@ function init() {
             refInputs[i].style.backgroundColor = "green"            
         }
     })
-
+ 
     // Clique no botão CAMPUS I
     btnCampus1.addEventListener("click", function () {
         // Obtém referência para a coleção de todos os elementos input
