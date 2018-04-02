@@ -127,9 +127,11 @@ class Carro {
     }
 
     set depositoAtual(novoDeposito) {
-        if (this._depositoAtual - novoDeposito) {
+        if (novoDeposito >= 0) {
             this._depositoAtual = novoDeposito
-        }        
+        } else {
+            console.log("Não é possível fazer esses kms com o depósito atual!")
+        }       
     }
 
     consumir(km) {
@@ -150,7 +152,7 @@ function funcC() {
     show("Depósito atual-> " + meuCarro2.depositoAtual)
     meuCarro2.consumir(22)
     show("Depósito atual-> " + meuCarro2.depositoAtual)
-    meuCarro2.consumir(122)
+    meuCarro2.consumir(11122)
     show("Depósito atual-> " + meuCarro2.depositoAtual)
 }
 
