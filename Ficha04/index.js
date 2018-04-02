@@ -128,9 +128,8 @@ class Carro {
 
     set depositoAtual(novoDeposito) {
         if (this._depositoAtual - novoDeposito) {
-            
-        }
-        this._depositoAtual = novoDeposito
+            this._depositoAtual = novoDeposito
+        }        
     }
 
     consumir(km) {
