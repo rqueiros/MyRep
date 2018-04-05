@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ficha nº7 - Exercício nº2</title>
+    <script src="ex02.js"></script>
+</head>
+<body>
+    <form id="frmRunning" action="" autocomplete="on">
+        <!-- NOME -->
+        <label for="txtNome">Nome</label>
+        <input type="text" value="ricardo" name="" id="txtNome" required autofocus>
+        <br>
+        <!-- MORADA -->
+        <label for="txtMorada">Morada</label>
+        <input type="text" name="" id="txtMorada">
+        <br>
+        <!-- CÓDIGO POSTAL -->
+        <label for="txtCp1">Código Postal</label>
+        <input type="number" name="" id="txtCp1" 
+        placeholder="NNNN"
+        min="1" 
+        max="9999" >
+        -
+        <input type="number" name="" id="txtCp2" min="1" max="999" >
+        <br>
+        <!-- TELEMÓVEL -->
+        <label for="txtTelemovel">Telemovel</label>
+        <input required type="number" 
+        value="910000000"
+        name="" id="txtTelemovel" min="900000000" max="999999999">
+        <br>
+        <!-- DATA -->
+        <label for="txtData">Data de Nascimento</label>
+        <input type="date" name="" id="txtData" required>
+        <br>
+        <!-- LOCALIDADE -->
+        <label for="txtLocalidade">Localidade</label>
+        <input list="locais" id="txtLocalidade">
+        <datalist id="locais">
+          <option value="Porto">
+          <option value="Vila do Conde">
+          <option value="Póvoa de Varzim">
+          <option value="Maia">
+          <option value="Famalicão">
+        </datalist>
+        <br>
+        <!-- SEXO -->
+        <label for="txtSexo">Sexo</label>
+        <input type="radio" name="sexo" value="M"> M
+        <input type="radio" name="sexo" value="F"> F<br>
+        <br>
+        <!-- EMAIL -->
+        <label for="txtEmail">Email</label>
+        <input type="email" name="" id="txtEmail" 
+            accesskey="e"
+            value="ricardo.queiros@gmail.com"
+            required>
+        <br>
+        <!-- CREDENCAIS DE ACESSO -->
+        <label for="txtUser">User</label>
+        <input type="text" name="" id="txtUser" required>
+        <br>
+        <label for="txtPass1">Password</label>
+        <input type="password" name="" id="txtPass1" required autocomplete="off" >
+        <br>
+        <label for="txtPass2">Confirmar Password</label>
+        <input type="password" name="" id="txtPass2" required autocomplete="off">
+        <br>
+        <!-- TAMANHO DA CAMISOLA -->
+        <label for="txtCamisola">Tamanho da camisola</label>
+        <select name="" id="txtCamisola">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+        </select>
+        <br>
+        <!-- PÁGINA PESSOAL -->
+        <label for="txtPagina">Página Pessoal</label>
+        <input type="url" name="" id="txtPagina">
+        <br>
+        <!-- Nº SAPATILHA -->
+        <label for="txtSapatilha">Nº da sapatilha</label>
+        <input type="number" name="" id="txtSapatilha" min="30" max="50">
+        <br>
+        <!-- Principais desportos praticados -->
+        <label for="txtDesportos">Desportos</label><br>
+        Running <input type="checkbox" name="" id="chbRunning">
+        Cycling <input type="checkbox" name="" id="chbRunning">
+        Natação <input type="checkbox" name="" id="chbRunning">
+        Futebol <input type="checkbox" name="" id="chbRunning">
+        Vela <input type="checkbox" name="" id="chbRunning">
+        Ténis <input type="checkbox" name="" id="chbRunning">
+        Outros <input type="checkbox" name="" id="chbRunning">
+        <br>
+        <!-- OBSERVAÇÕES -->
+        <label for="txtObservacoes">Observações</label><br>
+        <textarea name="" id="txtObservacoes" cols="30" rows="10">
+        </textarea>
+        <br>
+        <!-- BOTÃO DE SUBMIT -->
+        <input type="submit" value="SUBMETER">
+    </form>
+</body>
+</html>
