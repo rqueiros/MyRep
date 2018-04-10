@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Ficha 08 - Exercício 01</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom JS -->
+    <script src="ex01.js"></script>
+  </head>
+  <body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-3">Personalities App</h1>
+            <p class="lead">An app to manage personalities from the computer world!</p>
+            <hr class="my-2">
+
+            <!-- Form to manage personalities -->
+            
+                <form id="frmPersonalities">
+                        <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputName">Name</label>
+                                    <input type="text" value="brendan eich" class="form-control" id="inputName" required>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputYear">Year of Birth</label>
+                                    <input type="number" value="2000" min="1000" max="2000" required class="form-control" id="inputYear">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputNationality">Nacionality</label>
+                                    <select id="inputNationality" class="form-control" required>
+                                        <option selected>Choose...</option>
+                                        <option value="Europe">Europe</option>
+                                        <option value="Africa">Africa</option>
+                                        <option value="Asia">Asia</option>
+                                        <option value="America">America</option>
+                                        <option value="Oceania">Oceania</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputWork">Main work or creation</label>
+                                    <input type="text" value="javascript creator" class="form-control" id="inputWork" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPhoto">Photo link:</label>
+                                    <input type="url" value="http://sdsd.sdsd.pt" class="form-control" id="inputPhoto" required>
+                                </div>
+                            </div>
+                            <!-- Buttons-->
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <button type="submit" class="btn btn-primary mb-2">Add personality</button>
+                                    <button type="reset" class="btn btn-primary mb-2">Clear values</button>
+                                </div>
+                            </div>
+                </form>
+
+            <table id ="tblPersonalities" class="table table-sm">
+                    
+                    </table>
+
+        </div>
+
+      
+
+
+    </div>  
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
