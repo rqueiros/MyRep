@@ -1,7 +1,6 @@
 
-// Defines a class that represents a Personality
+// Defines a class to represent Personalities
 class Personality {
-    // Defines a constructor that will create an object
     constructor(name, year, nacionality, work, photo) {
         this.name = name
         this.year = year
@@ -10,14 +9,15 @@ class Personality {
         this.photo = photo
     }
 
-    // Property name
+    // Property Name
     get name() {
         return this._name
     }
+
     set name(newName) {
-        this._name = newName
+        this._name = newName        
     }
-    
+
     // Year property
     get year() {
         return this._year
@@ -51,75 +51,79 @@ class Personality {
     }
 }
 
-// Creates an array to store Personalities objects
+// Defines an array with Personlity objects
 let personalities = []
+
+
+
 
 window.onload = function() {
 
-     // Assign the current year to the Max attribute of the year input element
-     let maxYearOfBirth = document.getElementById("inputYear")
-     let currentYear = new Date().getFullYear()
-     maxYearOfBirth.setAttribute("max", currentYear)
- 
-    // Add listener to the form
     let frmPersonalities = document.getElementById("frmPersonalities")
+
     frmPersonalities.addEventListener("submit", function(event) {
-        console.log("ENTREI")
-        // 1. Get the form values
+        
+        // 1. Validar o campo Year
+        let currentYear = new Date().getFullYear() - 1
+        let inputYear = document.getElementById("inputYear")
+        inputYear.setAttribute("max", currentYear)
+
+
+        // 2. Criar um objeto Personality
         let name = document.getElementById("inputName").value
         let year = document.getElementById("inputYear").value
         let nacionality = document.getElementById("inputNationality").value
         let work = document.getElementById("inputWork").value
         let photo = document.getElementById("inputPhoto").value
 
-        // 2. Create an object based on those values
-        let newPersonality = new Personality(name, year, nacionality, work, photo)
-
-        // 3. Add the object to an array
+        let newPersonality = new Personality(
+            name, year,nacionality, work, photo) 
+        
+        // 3. Guardar o objeto num array
         personalities.push(newPersonality)
 
-        // 4. Render the table with all the objects!!
+        // 4. Renderizar a tabela com todos os objetos Personality
         renderTable()
 
-        // Prevent the form of being submitted
-        event.preventDefault()
+
+
+
+
+
+        event.preventDefault();
     })
 
 
 
-
+    // Function to render the Personality objects in the table
     function renderTable() {
+        
         let tblPersonalities = document.getElementById("tblPersonalities")
 
-        let strHtml = "<thead><tr><th >#</th>" +
-          "<th>Name</th>" +
-          "<th>Year</th>" +
-          "<th>Nationality</th>"+
-          "<th>Work</th>"+
-          "<th>Photo</th>"+
-          "</tr>" + 
-          "</thead><tbody>"
+        let strHtml = "<thead><tr><th>#</th>" +
+        "<th>Name</th>" +
+        "<th>Year</th>" +
+        "<th>Nationality</th>"+
+        "<th>Work</th>"+
+        "<th>Photo</th>"+
+        "</tr>" + 
+        "</thead><tbody>"
 
         for (var i = 0; i < personalities.length; i++) {
-            strHtml += "<tr>" + 
-            "<th>" + (i+1) + "</th>" +
+            strHtml += "<tr>" +
+            "<td>" + (i+1) + "</td>" +
             "<td>" + personalities[i].name + "</td>" +
             "<td>" + personalities[i].year + "</td>" +
             "<td>" + personalities[i].nacionality + "</td>" +
             "<td>" + personalities[i].work + "</td>" +
             "<td>" + personalities[i].photo + "</td>" +
-            "</tr>"            
-        }  
+            "</tr>"
+        }
         strHtml += "</tbody>"
-        
+
         tblPersonalities.innerHTML = strHtml
 
-
-
     }
-
-
-
 
 
 }
