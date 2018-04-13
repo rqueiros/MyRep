@@ -227,9 +227,13 @@ function editGameById(id) {
     for (let i = 0; i < games.length; i++) {
         if(games[i].id == id) {
             inputName.value = games[i].name
-            inputName.value = games[i].genre
-            inputName.value = games[i].photo                
+            inputGenre.value = games[i].genre
+            inputPhoto.value = games[i].photo                
             
+
+            games[i].platforms.forEach(element => {
+                document.querySelector("input[type='checkbox'][value='" + element + "']").checked = true 
+            });
         }                  
     }
 }
