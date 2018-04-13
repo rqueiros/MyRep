@@ -1,5 +1,6 @@
 // Defines an array with Personlity objects
 let games = []
+let gameId = 0
 
 // Defines a class to represent Personalities
 class Game {
@@ -81,15 +82,14 @@ window.onload = function() {
     let tblGames = document.getElementById("tblGames")
     let btnRemoveAll = document.getElementById("btnRemoveAll")
     let btnFilter = document.getElementById("btnFilter")
-   
+    let nodesPlatform = document.getElementsByClassName("form-check-input")
 
     // Add listener to form    
     frmGames.addEventListener("submit", function(event) {
-        // 1. Validar o campo Platforms
+        // Validate Platforms field
         let platforms = []
         let strError = ""
-
-        let nodesPlatform = document.getElementsByClassName("form-check-input")        
+                
         for (let i = 0; i < nodesPlatform.length; i++) {
             if (nodesPlatform[i].checked == true) {                
                 platforms.push(nodesPlatform[i].value)
@@ -104,10 +104,24 @@ window.onload = function() {
         }
         
         if(strError == "") {
-            // 2. Criar um objeto Game            
-            let newGame = new Game(inputName.value, inputGenre.value, platforms, inputPhoto.value) 
-            // 3. Push the new object to the array
-            games.push(newGame)
+            // Verify if this is a new game or the update of an existent game
+            if(gameId == 0) {
+                // Create a new instance of Game            
+                let newGame = new Game(inputName.value, inputGenre.value, platforms, inputPhoto.value) 
+                // Push the new object to the array
+                games.push(newGame)            
+            } else {
+                for (let i = 0; i < games.length; i++) {
+                    if(games[i].id == gameId) {
+                        games[i].name = inputName.value
+                        games[i].genre = inputGenre.value
+                        games[i].platforms = platforms
+                        games[i].photo = inputPhoto.value
+                    }                  
+                }
+                gameId = 0
+            }
+
             // 4. Render table
             renderTable()
             // 5. Limpa tabela
@@ -131,7 +145,6 @@ window.onload = function() {
         let genre = document.getElementById("inputGenre").value           
         renderTable(genre)
     })
-}
 
 
 //############ Functions ##############
@@ -221,16 +234,32 @@ function viewGameById(id) {
 }
 
 // Edit game based on its ID
-function editGameById(id) {
+function editGameById(id) {    
+    // Update global variable
+    gameId = id
+    // Iterate from all the games and fill the form with the games data
     for (let i = 0; i < games.length; i++) {
         if(games[i].id == id) {
             inputName.value = games[i].name
             inputGenre.value = games[i].genre
             inputPhoto.value = games[i].photo                
-            
+            // Check the boxes that belongs to the array games.plataforms
+            for (let j = 0; j < nodesPlatform.length; j++) {
+                console.log(nodesPlatform[j].getAttribute("value"))
+                if (games[i].platforms.indexOf(nodesPlatform[j].getAttribute("value")) != -1) {                
+                    nodesPlatform[j].checked = true
+                }  else {
+                    nodesPlatform[j].checked = false
+                }          
+            }
+            //OU
+            /*
             games[i].platforms.forEach(element => {
                 document.querySelector("input[type='checkbox'][value='" + element + "']").checked = true 
             });
+            */
         }                  
     }
+}
+
 }
