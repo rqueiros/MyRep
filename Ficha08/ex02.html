@@ -31,6 +31,7 @@
                     <div class="form-group col-md-6">
                         <label for="inputGenre">Genre</label>
                         <select id="inputGenre" class="form-control" required>                            
+                            <option value="">All</option>
                             <option value="Action">Action</option>
                             <option value="Adventure">Adventure</option>
                             <option value="Strategy">Strategy</option>
@@ -73,8 +74,8 @@
                     <div class="form-group col-md-12">
                         <button type="submit" class="btn btn-primary mb-2">Add game</button>
                         <button type="reset" class="btn btn-primary mb-2">Clear values</button>
-                        <button type="button" class="btn btn-primary mb-2">Filter</button>
-                        <button type="button" class="btn btn-primary mb-2">Remove all</button>
+                        <button id="btnFilter" type="button" class="btn btn-primary mb-2">Filter</button>
+                        <button id="btnRemoveAll" type="button" class="btn btn-primary mb-2">Remove all</button>
                     </div>
                 </div>
     </form>

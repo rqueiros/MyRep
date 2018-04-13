@@ -70,8 +70,8 @@ class Game {
 
 window.onload = function() {
 
+    // Add listener to form
     let frmGames = document.getElementById("frmGames")
-
     frmGames.addEventListener("submit", function(event) {
         
         // 1. Validar o campo Platforms
@@ -84,7 +84,6 @@ window.onload = function() {
                 platforms.push(nodesPlatform[i].value)
             }            
         }
-        
 
         // 1. Validar o campo Platforms (alternativa mais compacta)
         //console.log(document.querySelectorAll('input[type="checkbox"]:checked').length)
@@ -106,30 +105,54 @@ window.onload = function() {
 
             // 4. Render table
             renderTable()
+
+            // 5. Limpa tabela
+            frmGames.reset()
         } else {
             alert(strError)            
         }
        
         event.preventDefault();
+    
+    
     })
 
-
-
-    // Function to render the Game objects in the table
-    function renderTable() {
+    // Add listener to RemoveAll button
+    let btnRemoveAll = document.getElementById("btnRemoveAll")
+    btnRemoveAll.addEventListener("click", function() {
+        games = []
         
+        renderTable()
         let tblGames = document.getElementById("tblGames")
+        tblGames.innerHTML = ""
+    })
 
-        let strHtml = "<thead class='thead-dark'><tr>" +
-        "<th class='w-2'>#</th>" +
-        "<th class='w-50'>Name</th>" +
-        "<th class='w-20'>Genre</th>" +
-        "<th class='w-20'>Platforms</th>"+  
-        "<th class='w-8'>Actions</th>" +              
-        "</tr>" + 
-        "</thead><tbody>"
+    // Add listener to Filter button
+    let btnFilter = document.getElementById("btnFilter")
+    btnFilter.addEventListener("click", function() {
+        let genre = document.getElementById("inputGenre").value           
+        renderTable(genre)
+    })
+}
 
-        for (var i = 0; i < games.length; i++) {
+
+//############ Functions ##############
+// Function to render the Game objects in the table
+function renderTable(genre = "") {
+        
+    let tblGames = document.getElementById("tblGames")
+
+    let strHtml = "<thead class='thead-dark'><tr>" +
+    "<th class='w-2'>#</th>" +
+    "<th class='w-50'>Name</th>" +
+    "<th class='w-20'>Genre</th>" +
+    "<th class='w-20'>Platforms</th>"+  
+    "<th class='w-8'>Actions</th>" +              
+    "</tr>" + 
+    "</thead><tbody>"
+
+    for (var i = 0; i < games.length; i++) {
+        if (genre==games[i].genre || genre=="") {
             strHtml += "<tr>" +
             "<td>" + games[i].id + "</td>" +
             "<td>" + games[i].name + "</td>" +
@@ -140,63 +163,61 @@ window.onload = function() {
                 "<a id='" + games[i].id + "' class='remove'><i class='fas fa-trash-alt'></i></a> " +
                 "<a id='" + games[i].id + "' class='view' data-toggle='modal' data-target='#gameModal'><i class='fas fa-eye'></i></a>" +
             "</td>" +                         
-            "</tr>"
-        }
-        strHtml += "</tbody>"
+            "</tr>" 
+        }        
+    }
+    strHtml += "</tbody>"
 
-        tblGames.innerHTML = strHtml
+    tblGames.innerHTML = strHtml
 
 
-        // Get all the remove links from the table
-        let tdRemove = document.getElementsByClassName("remove")
-        // For each link, add a listener to listen the click event
-        for (let i = 0; i < tdRemove.length; i++) {
-            tdRemove[i].addEventListener("click", function() {
-                // By clicking in a specific game, remove it from the array
-                let gameId = tdRemove[i].getAttribute("id")
-                removeGameById(gameId)
-                renderTable()
-            })        
-        }
-
-        // Get all the view links from the table
-        let tdView = document.getElementsByClassName("view")
-        // For each link, add a listener to listen the click event
-        for (let i = 0; i < tdView.length; i++) {
-            tdView[i].addEventListener("click", function() {
-                // By clicking in a specific game, view it in a modal
-                let gameId = tdView[i].getAttribute("id")
-                viewGameById(gameId)                
-            })        
-        }
+    // Get all the remove links from the table
+    let tdRemove = document.getElementsByClassName("remove")
+    // For each link, add a listener to listen the click event
+    for (let i = 0; i < tdRemove.length; i++) {
+        tdRemove[i].addEventListener("click", function() {
+            // By clicking in a specific game, remove it from the array
+            let gameId = tdRemove[i].getAttribute("id")
+            removeGameById(gameId)
+            renderTable()
+        })        
     }
 
-    // Remove game based on its ID
-    function removeGameById(id) {
-        for (let i = 0; i < games.length; i++) {
-            if(games[i].id == id) {
-                games.splice(i, 1)
-            }                  
-        }
+    // Get all the view links from the table
+    let tdView = document.getElementsByClassName("view")
+    // For each link, add a listener to listen the click event
+    for (let i = 0; i < tdView.length; i++) {
+        tdView[i].addEventListener("click", function() {
+            // By clicking in a specific game, view it in a modal
+            let gameId = tdView[i].getAttribute("id")
+            viewGameById(gameId)                
+        })        
     }
+}
 
-    // View game based on its ID
-    function viewGameById(id) {
-        
-        let modalGameName = document.getElementById("modalGameName")
-        let modalGameGenre = document.getElementById("modalGameGenre")
-        let modalGamePlatforms = document.getElementById("modalGamePlatforms")
-        let modalGameCover = document.getElementById("modalGameCover")
-
-        for (let i = 0; i < games.length; i++) {
-            if(games[i].id == id) {
-                modalGameName.innerHTML= games[i].name                
-                modalGameGenre.innerHTML = games[i].genre
-                modalGamePlatforms.innerHTML =  games[i].platforms
-                modalGameCover.setAttribute("src", games[i].photo)                
-            }                  
-        }
+// Remove game based on its ID
+function removeGameById(id) {
+    for (let i = 0; i < games.length; i++) {
+        if(games[i].id == id) {
+            games.splice(i, 1)
+        }                  
     }
+}
 
+// View game based on its ID
+function viewGameById(id) {
+    
+    let modalGameName = document.getElementById("modalGameName")
+    let modalGameGenre = document.getElementById("modalGameGenre")
+    let modalGamePlatforms = document.getElementById("modalGamePlatforms")
+    let modalGameCover = document.getElementById("modalGameCover")
 
+    for (let i = 0; i < games.length; i++) {
+        if(games[i].id == id) {
+            modalGameName.innerHTML= games[i].name                
+            modalGameGenre.innerHTML = games[i].genre
+            modalGamePlatforms.innerHTML =  games[i].platforms
+            modalGameCover.setAttribute("src", games[i].photo)                
+        }                  
+    }
 }
