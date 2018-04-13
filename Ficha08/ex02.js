@@ -69,11 +69,22 @@ class Game {
 
 
 window.onload = function() {
-
-    // Add listener to form
+    // References to HTML objects
     let frmGames = document.getElementById("frmGames")
+    let inputName = document.getElementById("inputName")
+    let inputGenre = document.getElementById("inputGenre")
+    let inputPhoto = document.getElementById("inputPhoto")
+    let modalGameName = document.getElementById("modalGameName")
+    let modalGameGenre = document.getElementById("modalGameGenre")
+    let modalGamePlatforms = document.getElementById("modalGamePlatforms")
+    let modalGameCover = document.getElementById("modalGameCover")
+    let tblGames = document.getElementById("tblGames")
+    let btnRemoveAll = document.getElementById("btnRemoveAll")
+    let btnFilter = document.getElementById("btnFilter")
+   
+
+    // Add listener to form    
     frmGames.addEventListener("submit", function(event) {
-        
         // 1. Validar o campo Platforms
         let platforms = []
         let strError = ""
@@ -93,43 +104,30 @@ window.onload = function() {
         }
         
         if(strError == "") {
-            // 2. Criar um objeto Game
-            let name = document.getElementById("inputName").value
-            let genre = document.getElementById("inputGenre").value
-            let photo = document.getElementById("inputPhoto").value
-    
-            let newGame = new Game(name, genre, platforms, photo) 
-
+            // 2. Criar um objeto Game            
+            let newGame = new Game(inputName.value, inputGenre.value, platforms, inputPhoto.value) 
             // 3. Push the new object to the array
             games.push(newGame)
-
             // 4. Render table
             renderTable()
-
             // 5. Limpa tabela
             frmGames.reset()
         } else {
             alert(strError)            
-        }
-       
+        }       
         event.preventDefault();
-    
-    
     })
 
     // Add listener to RemoveAll button
-    let btnRemoveAll = document.getElementById("btnRemoveAll")
     btnRemoveAll.addEventListener("click", function() {
-        games = []
-        
+        games = []        
         renderTable()
         let tblGames = document.getElementById("tblGames")
         tblGames.innerHTML = ""
     })
 
     // Add listener to Filter button
-    let btnFilter = document.getElementById("btnFilter")
-    btnFilter.addEventListener("click", function() {
+     btnFilter.addEventListener("click", function() {
         let genre = document.getElementById("inputGenre").value           
         renderTable(genre)
     })
@@ -139,9 +137,6 @@ window.onload = function() {
 //############ Functions ##############
 // Function to render the Game objects in the table
 function renderTable(genre = "") {
-        
-    let tblGames = document.getElementById("tblGames")
-
     let strHtml = "<thead class='thead-dark'><tr>" +
     "<th class='w-2'>#</th>" +
     "<th class='w-50'>Name</th>" +
@@ -159,7 +154,7 @@ function renderTable(genre = "") {
             "<td>" + games[i].genre + "</td>" +
             "<td>" + games[i].platforms + "</td>" +
             "<td>" +
-                "<i class='fas fa-edit'></i> " +
+                "<a id='" + games[i].id + "' class='edit'><i class='fas fa-edit'></i></a> " +
                 "<a id='" + games[i].id + "' class='remove'><i class='fas fa-trash-alt'></i></a> " +
                 "<a id='" + games[i].id + "' class='view' data-toggle='modal' data-target='#gameModal'><i class='fas fa-eye'></i></a>" +
             "</td>" +                         
@@ -167,9 +162,7 @@ function renderTable(genre = "") {
         }        
     }
     strHtml += "</tbody>"
-
     tblGames.innerHTML = strHtml
-
 
     // Get all the remove links from the table
     let tdRemove = document.getElementsByClassName("remove")
@@ -193,6 +186,17 @@ function renderTable(genre = "") {
             viewGameById(gameId)                
         })        
     }
+
+    // Get all the edit links from the table
+    let tdEdit = document.getElementsByClassName("edit")
+    // For each link, add a listener to listen the click event
+    for (let i = 0; i < tdEdit.length; i++) {
+        tdEdit[i].addEventListener("click", function() {
+            // By clicking in a specific game, edit in the form
+            let gameId = tdEdit[i].getAttribute("id")
+            editGameById(gameId)                
+        })        
+    }
 }
 
 // Remove game based on its ID
@@ -205,19 +209,27 @@ function removeGameById(id) {
 }
 
 // View game based on its ID
-function viewGameById(id) {
-    
-    let modalGameName = document.getElementById("modalGameName")
-    let modalGameGenre = document.getElementById("modalGameGenre")
-    let modalGamePlatforms = document.getElementById("modalGamePlatforms")
-    let modalGameCover = document.getElementById("modalGameCover")
-
+function viewGameById(id) {        
     for (let i = 0; i < games.length; i++) {
         if(games[i].id == id) {
             modalGameName.innerHTML= games[i].name                
             modalGameGenre.innerHTML = games[i].genre
             modalGamePlatforms.innerHTML =  games[i].platforms
             modalGameCover.setAttribute("src", games[i].photo)                
+        }                  
+    }
+}
+
+// Edit game based on its ID
+function editGameById(id) {
+    
+    
+    for (let i = 0; i < games.length; i++) {
+        if(games[i].id == id) {
+            inputName.value = games[i].name
+            inputName.value = games[i].genre
+            inputName.value = games[i].photo                
+            
         }                  
     }
 }
