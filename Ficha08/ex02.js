@@ -1,11 +1,19 @@
+// Defines an array with Personlity objects
+let games = []
 
 // Defines a class to represent Personalities
 class Game {
     constructor(name, genre, platforms, photo) {
+        this._id = Game.getLastId() + 1
         this.name = name
         this.genre = genre
         this.platforms = platforms        
         this.photo = photo
+    }
+
+    // Property Id
+    get id() {
+        return this._id
     }
 
     // Property Name
@@ -43,10 +51,19 @@ class Game {
     set photo(newPhoto) {
         this._photo = newPhoto
     }
+
+
+    // Get the last ID
+    static getLastId() {
+        let lastId = 0
+        if (games.length > 0) {
+            lastId = games[games.length-1].id
+        }        
+        return lastId
+    }
 }
 
-// Defines an array with Personlity objects
-let games = []
+
 
 
 
@@ -67,6 +84,7 @@ window.onload = function() {
                 platforms.push(nodesPlatform[i].value)
             }            
         }
+        
 
         // 1. Validar o campo Platforms (alternativa mais compacta)
         //console.log(document.querySelectorAll('input[type="checkbox"]:checked').length)
@@ -102,27 +120,53 @@ window.onload = function() {
         
         let tblGames = document.getElementById("tblGames")
 
-        let strHtml = "<thead><tr><th>#</th>" +
-        "<th>Name</th>" +
-        "<th>Genre</th>" +
-        "<th>Platforms</th>"+        
-        "<th>Photo</th>"+
+        let strHtml = "<thead class='thead-dark'><tr>" +
+        "<th class='w-2'>#</th>" +
+        "<th class='w-50'>Name</th>" +
+        "<th class='w-20'>Genre</th>" +
+        "<th class='w-20'>Platforms</th>"+  
+        "<th class='w-8'>Actions</th>" +              
         "</tr>" + 
         "</thead><tbody>"
 
         for (var i = 0; i < games.length; i++) {
             strHtml += "<tr>" +
-            "<td>" + (i+1) + "</td>" +
+            "<td>" + games[i].id + "</td>" +
             "<td>" + games[i].name + "</td>" +
             "<td>" + games[i].genre + "</td>" +
-            "<td>" + games[i].platforms + "</td>" +            
-            "<td>" + games[i].photo + "</td>" +
+            "<td>" + games[i].platforms + "</td>" +
+            "<td>" +
+                "<i class='fas fa-edit'></i> " +
+                "<a id='" + games[i].id + "' class='remove'><i class='fas fa-trash-alt'></i></a> " +
+                "<i class='fas fa-eye'></i>" +
+            "</td>" +                         
             "</tr>"
         }
         strHtml += "</tbody>"
 
         tblGames.innerHTML = strHtml
 
+
+        // Get all the remove links from the table
+        let tdRemove = document.getElementsByClassName("remove")
+        // For each link, add a listener to listen the click event
+        for (let i = 0; i < tdRemove.length; i++) {
+            tdRemove[i].addEventListener("click", function() {
+                // By clicking in a specific game, remove it from the array
+                let gameId = tdRemove[i].getAttribute("id")
+                removeGameById(gameId)
+                renderTable()
+            })        
+        }
+    }
+
+    // Remove game based on its ID
+    function removeGameById(id) {
+        for (let i = 0; i < games.length; i++) {
+            if(games[i].id == id) {
+                games.splice(i, 1)
+            }                  
+        }
     }
 
 
