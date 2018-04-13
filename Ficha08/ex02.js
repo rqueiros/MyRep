@@ -138,7 +138,7 @@ window.onload = function() {
             "<td>" +
                 "<i class='fas fa-edit'></i> " +
                 "<a id='" + games[i].id + "' class='remove'><i class='fas fa-trash-alt'></i></a> " +
-                "<i class='fas fa-eye'></i>" +
+                "<a id='" + games[i].id + "' class='view' data-toggle='modal' data-target='#gameModal'><i class='fas fa-eye'></i></a>" +
             "</td>" +                         
             "</tr>"
         }
@@ -158,6 +158,17 @@ window.onload = function() {
                 renderTable()
             })        
         }
+
+        // Get all the view links from the table
+        let tdView = document.getElementsByClassName("view")
+        // For each link, add a listener to listen the click event
+        for (let i = 0; i < tdView.length; i++) {
+            tdView[i].addEventListener("click", function() {
+                // By clicking in a specific game, view it in a modal
+                let gameId = tdView[i].getAttribute("id")
+                viewGameById(gameId)                
+            })        
+        }
     }
 
     // Remove game based on its ID
@@ -165,6 +176,24 @@ window.onload = function() {
         for (let i = 0; i < games.length; i++) {
             if(games[i].id == id) {
                 games.splice(i, 1)
+            }                  
+        }
+    }
+
+    // View game based on its ID
+    function viewGameById(id) {
+        
+        let modalGameName = document.getElementById("modalGameName")
+        let modalGameGenre = document.getElementById("modalGameGenre")
+        let modalGamePlatforms = document.getElementById("modalGamePlatforms")
+        let modalGameCover = document.getElementById("modalGameCover")
+
+        for (let i = 0; i < games.length; i++) {
+            if(games[i].id == id) {
+                modalGameName.innerHTML= games[i].name                
+                modalGameGenre.innerHTML = games[i].genre
+                modalGamePlatforms.innerHTML =  games[i].platforms
+                modalGameCover.setAttribute("src", games[i].photo)                
             }                  
         }
     }

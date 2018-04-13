@@ -65,7 +65,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputPhoto">Cover photo link</label>
-                        <input type="url" value="http://somecover.pt" class="form-control" id="inputPhoto" required>
+                        <input type="url" value="https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Tetris_Ultimate_cover_art.jpg/220px-Tetris_Ultimate_cover_art.jpg" class="form-control" id="inputPhoto" required>
                     </div> 
                 </div>
                 <!-- Buttons-->
@@ -87,7 +87,40 @@
         </div>
        </div>
     </div>
-    
+
+
+    <!--Modal-->
+    <div class="modal fade" id="gameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Game Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h5>Name</h5>
+                    <p id="modalGameName"></p>
+                <hr>
+                <h5>Genre</h5>
+                    <p id="modalGameGenre"></p>
+                <hr>
+                <h5>Platforms</h5>
+                    <p id="modalGamePlatforms"></p>
+                <hr>
+                <h5>Cover</h5>
+                    <img id="modalGameCover" class="img-thumbnail" src="" alt="">
+
+            </div>
+           
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
     
 
     <!-- Optional JavaScript -->
