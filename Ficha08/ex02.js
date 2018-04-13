@@ -222,15 +222,12 @@ function viewGameById(id) {
 
 // Edit game based on its ID
 function editGameById(id) {
-    
-    
     for (let i = 0; i < games.length; i++) {
         if(games[i].id == id) {
             inputName.value = games[i].name
             inputGenre.value = games[i].genre
             inputPhoto.value = games[i].photo                
             
-
             games[i].platforms.forEach(element => {
                 document.querySelector("input[type='checkbox'][value='" + element + "']").checked = true 
             });
