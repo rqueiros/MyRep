@@ -2,7 +2,7 @@
 let games = []
 let gameId = 0
 
-// Defines a class to represent Personalities
+// Defines a class to represent Games
 class Game {
     constructor(name, genre, platforms, photo) {
         this._id = Game.getLastId() + 1
@@ -40,8 +40,7 @@ class Game {
         return this._platforms
     }
 
-    set platforms(newPlatforms) {
-        console.log(newPlatforms)
+    set platforms(newPlatforms) {        
         this._platforms = newPlatforms        
     }
 
@@ -63,9 +62,6 @@ class Game {
         return lastId
     }
 }
-
-
-
 
 
 
@@ -135,8 +131,7 @@ window.onload = function() {
     // Add listener to RemoveAll button
     btnRemoveAll.addEventListener("click", function() {
         games = []        
-        renderTable()
-        let tblGames = document.getElementById("tblGames")
+        renderTable()        
         tblGames.innerHTML = ""
     })
 
@@ -244,8 +239,7 @@ function editGameById(id) {
             inputGenre.value = games[i].genre
             inputPhoto.value = games[i].photo                
             // Check the boxes that belongs to the array games.plataforms
-            for (let j = 0; j < nodesPlatform.length; j++) {
-                console.log(nodesPlatform[j].getAttribute("value"))
+            for (let j = 0; j < nodesPlatform.length; j++) {                
                 if (games[i].platforms.indexOf(nodesPlatform[j].getAttribute("value")) != -1) {                
                     nodesPlatform[j].checked = true
                 }  else {
