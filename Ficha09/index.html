@@ -11,6 +11,13 @@
   
     <!--Custom JS-->
     <script src="index.js"></script>
+    <style>
+        /* Tornar as imagens responsivas */
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 
     </head>
   <body>
@@ -78,6 +85,24 @@
           </a>
       </div>
 
+      <!--ABOUT (jumbotron)-->
+      <div class="jumbotron">
+        <h1 class="display-4">Welcome to the DreamTrips application!</h1>
+        <p class="lead">Here you can see all the trips of our members and also you can register and submit your own trips!</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      </div>
+
+      <!--CATALOG (jumbotron)-->
+      <div class="jumbotron">
+        <h1 class="display-4">Trips Catalog</h1>
+        <p class="lead">Browse all the trips!</p>  
+
+        <div id="tripsCatalog" class="container">
+            
+        </div>
+    </div>
+
+        
 
 
 
@@ -113,7 +138,7 @@
 
                     <!-- CONFIRMAR PASSWORD-->
                     <div class="form-group">
-                        <label for="inputPassword2">Password</label>
+                        <label for="inputPassword2">Confirmar password</label>
                         <input required minlength="5" type="password" class="form-control" id="inputPassword2" placeholder="password">                        
                     </div>    
 
@@ -142,14 +167,14 @@
                 <form id="frmLogin">                    
                     <!--EMAIL-->
                     <div class="form-group">
-                        <label for="inputEmail">E-mail</label>
-                        <input required type="email" class="form-control" id="inputEmail" placeholder="email" >                        
+                        <label for="inputLoginEmail">E-mail</label>
+                        <input required type="email" class="form-control" id="inputLoginEmail" placeholder="email" >                        
                     </div>
 
                     <!--PASSWORD-->
                     <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <input required minlength="5" type="password" class="form-control" id="inputPassword" placeholder="password" >                        
+                        <label for="inputLoginPassword">Password</label>
+                        <input required minlength="5" type="password" class="form-control" id="inputLoginPassword" placeholder="password" >                        
                     </div>
             </div>
             <div class="modal-footer">
