@@ -288,34 +288,36 @@ window.onload = function() {
 
 
 // Função que vai alimentar o meu catálogo
-function renderCatalog() {
+function renderCatalog(userId = 0) {
 
     // 1. Iterar sobre o array de Trips
 
     // 2. Para cada Trip vou definir uma Card e compô-la com os dados do objeto
     let strHtmlCard = ""
     for (var i = 0; i < trips.length; i++) {
+        if (userId == trips[i].userId || userId == 0) {
+            // Inicia a linha
+            if(i % 3 == 0) {
+                strHtmlCard += `<div class="row">`    
+            }
 
-        // Inicia a linha
-        if(i % 3 == 0) {
-            strHtmlCard += `<div class="row">`    
-        }
-
-        // Cria a card
-        strHtmlCard += `<div class="col-sm-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="images/barcelona.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">${trips[i].name}</h5>
-                    <p class="card-text">${trips[i].description}</p>
-                    <a href="#" class="btn btn-primary">See more details</a>
-                </div>
-            </div>      
-        </div>`
-        // Fecha a linha
-        if(i % 3 == 2) {
-            strHtmlCard += `</div>`    
-        }        
+            // Cria a card
+            strHtmlCard += `<div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="images/barcelona.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">${trips[i].name}</h5>
+                        <p class="card-text">${trips[i].description}</p>
+                        <a href="#" class="btn btn-primary">See more details</a>
+                    </div>
+                </div>      
+            </div>`
+            
+            // Fecha a linha
+            if(i % 3 == 2) {
+                strHtmlCard += `</div>`    
+            }        
+     }
     }
     let tripsCatalog = document.getElementById("tripsCatalog")
     tripsCatalog.innerHTML = strHtmlCard
