@@ -1,4 +1,4 @@
-// Defines an array with Personlity objects
+// Defines an array with Games objects
 let games = []
 let gameId = 0
 
@@ -136,9 +136,8 @@ window.onload = function() {
     })
 
     // Add listener to Filter button
-     btnFilter.addEventListener("click", function() {
-        let genre = document.getElementById("inputGenre").value           
-        renderTable(genre)
+     btnFilter.addEventListener("click", function() {        
+        renderTable(inputGenre.value)
     })
 
 
@@ -240,7 +239,8 @@ function editGameById(id) {
             inputPhoto.value = games[i].photo                
             // Check the boxes that belongs to the array games.plataforms
             for (let j = 0; j < nodesPlatform.length; j++) {                
-                if (games[i].platforms.indexOf(nodesPlatform[j].getAttribute("value")) != -1) {                
+                if (games[i].platforms.indexOf(
+                    nodesPlatform[j].getAttribute("value")) != -1) {                
                     nodesPlatform[j].checked = true
                 }  else {
                     nodesPlatform[j].checked = false
