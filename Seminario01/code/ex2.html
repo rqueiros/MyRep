@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Storage Demo #02</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+       window.onload = function() {
+           let txtColor = document.getElementById("txtColor")
+           let btnStore = document.getElementById("btnStore")
+           let body = document.getElementById("b")
+
+           if (localStorage.getItem("myColor")) {
+               body.style.backgroundColor = localStorage.myColor               
+           }
+           
+           btnStore.addEventListener("click", function() {
+              localStorage.setItem("myColor", txtColor.value)      
+              body.style.backgroundColor = localStorage.getItem("myColor")
+           })
+
+       } 
+    </script>
+</head>
+<body id="b">
+    <h2>Web Storage Demo #02</h2><br>
+    Set my backcolor: <input id="txtColor" type="color">
+    <button id="btnStore">Submit</button>    
+</body>
+</html>

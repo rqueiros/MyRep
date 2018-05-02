@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Storage Demo #01</title>
+   <script>
+       window.onload = function() {
+        let btnStore = document.getElementById("btnStore")
+        let sltSchools = document.getElementById("sltSchools")
+
+        if (localStorage.getItem("school")) {
+            sltSchools.value = localStorage.getItem("school")
+        }
+
+
+
+        btnStore.addEventListener("click", function() {
+            localStorage.setItem("school",sltSchools.value)
+        })
+        
+        
+
+       }    
+    </script>
+</head>
+<body>    
+    <h2>Web Storage Demo #01</h2><br>
+    <select id="sltSchools">
+        <option value="ESMAD">ESMAD</option>
+        <option value="ISEP">ISEP</option>
+        <option value="ESE">ESE</option>
+        <option value="ISCAP">ISCAP</option>
+        <option value="ESMAE">ESMAE</option>
+    </select>
+    <button id="btnStore">CLICK ME</button>   
+</body>
+</html>

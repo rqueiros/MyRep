@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Storage Demo #03</title>
+    
+    <script>
+    window.onload= function () {        
+        let txtName = document.getElementById("txtName")
+        let txtMovie = document.getElementById("txtMovie")
+        let txtScore = document.getElementById("txtScore")
+        let btnStore = document.getElementById("btnStore")
+
+        btnStore.addEventListener("click", function() {
+            myMovies = []
+
+            if (localStorage.getItem(txtName.value)) {
+                myMovies = JSON.parse(localStorage.getItem(txtName.value))
+            }
+
+            myMovies.push({movie: txtMovie.value, 
+                score: txtScore.value})
+
+            localStorage.setItem(
+                txtName.value, 
+                JSON.stringify(myMovies))
+
+        })
+      
+    }
+    </script>
+</head>
+<body>    
+    Name: <input id="txtName" type="text"><br>
+    Movie: <input id="txtMovie" type="text"><br>
+    Score: <input id="txtScore" type="text">
+    <button id="btnStore">SUBMIT</button>
+</body>
+</html>
