@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DEMO #02 GMJSAPI</title>
+   
+</head>
+<body>
+        <div id="myMap" style="width:500px; height:500px"></div>
+        
+        <script>            
+                let map
+                let myMap = document.getElementById("myMap")
+        
+                // Função chamada automaticamente que vai verificar se o browser suporta geolocalização
+                function initMap() {
+                    if (navigator.geolocation) {
+                       // Se suporta geolocalização tenta obter a sua posição 
+                       navigator.geolocation.getCurrentPosition(showPosition)
+                    } else {
+                        console.log("Geolocation is not supported by this browser")
+                    }
+                }   
+                
+                // Função callback chamada pelo método getCurrentPosition
+                function showPosition(position) {                    
+                    let mapProp= {
+                        center:new google.maps.LatLng(
+                            position.coords.latitude,
+                            position.coords.longitude),
+                        mapTypeId: google.maps.MapTypeId.SATELLITE,
+                        zoom:16
+                    }
+                    map = new google.maps.Map(myMap, mapProp)
+                }                
+            </script>
+  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcYng9pBfj_LmDthyiydpfyy3bftchOmg&callback=initMap" async></script> 
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DEMO #01 GMJSAPI</title>
+   
+</head>
+<body>
+        <div id="myMap" style="width:500px; height:500px"></div>
+        <script>            
+            let map
+            let myMap = document.getElementById("myMap")
+            function initMap() {
+                let mapProp= {
+                    center:new google.maps.LatLng(37.508742,-0.420850),
+                    zoom:5
+                }
+                map = new google.maps.Map(myMap, mapProp)
+            }                    
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcYng9pBfj_LmDthyiydpfyy3bftchOmg&callback=initMap" async></script>  
+</body>
+</html>
